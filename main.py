@@ -29,7 +29,32 @@ records = [
 ['Ajay',21,'Indore',74,76,78,79,75,4],
 ['Kriti',20,'Bhopal',93,94,92,95,91,7],
 ['Manish',22,'Gwalior',75,60,62,64,61,2],
-]
+ ]
 
-with open('student.csv','w',newline='') as f:
-    csv.writer(f).writerows(records)
+# with open('student.csv','w',newline='') as f:
+#     csv.writer(f).writerows(records)
+    
+'''Tasks:
+  1. Load CSV with Pandas. Handle missing values and errors.'''
+
+
+import pandas as pd 
+df = pd.read_csv('student.csv')
+# # print(df.head())    
+
+# print(df.isnull().sum())
+
+# df['Name'] = df['Name'].str.strip()
+# print(df['Name'])
+
+#For Errors handling
+# try:
+#     df = pd.read_csv("students.csv")
+#     print("File loaded successfully")
+# except FileNotFoundError:
+#     print("Error: students.csv file not found")
+#     exit()
+# except pd.errors.EmptyDataError:
+#     print("Error: CSV file is empty")
+#     exit()
+
