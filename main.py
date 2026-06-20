@@ -58,7 +58,8 @@ df['Name'] = df['Name'].str.strip()
 #     print("Error: CSV file is empty")
 #     exit()
 
-#  Calculate: total, average, grade (A+/A/B/C/F), rank for each student.
+'''Tasks:
+    2. Calculate: total, average, grade (A+/A/B/C/F), rank for each student.'''
 
 # Calculate Total & Average
 
@@ -103,7 +104,22 @@ df['Rank'] = df['Total'].rank(
 
 # print(df['Rank'])
 
-print(df)
+# print(df)
 
 # The 3rd and 18th ranks were secured by two students each. Therefore, ranks 4 and 19 are not assigned and do not appear in the table.
+
+''' Tasks:
+     3. Summary statistics: class average, topper, failure rate, city-wise breakdown.'''
+
+# Summary Statistics :
+
+class_avarage = df['Average'].mean()
+
+
+topper = df.loc[df['Total'].idxmax()]
+# loc[] is used to access rows by their index label.
+# topper : 11    Anjali   19   Gwalior     95       94       96        98       97            8    480     96.0    A+     1
+
+print('Class Avarage :',class_avarage)
+print('Topper of the class :', topper)
 
