@@ -58,3 +58,17 @@ df = pd.read_csv('student.csv')
 #     print("Error: CSV file is empty")
 #     exit()
 
+#  Calculate: total, average, grade (A+/A/B/C/F), rank for each student.
+
+# Calculate Total & Average
+# print(df.head())
+# print(df.columns)
+
+subjects = ['Maths', 'Science', 'English', 'Computer','History']
+
+df['Total'] = df[subjects].sum(axis=1)
+df['Average'] = df[subjects].mean(axis=1)
+
+print(df['Total'])
+print(df['Average'])
+    
