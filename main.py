@@ -120,6 +120,43 @@ topper = df.loc[df['Total'].idxmax()]
 # loc[] is used to access rows by their index label.
 # topper : 11    Anjali   19   Gwalior     95       94       96        98       97            8    480     96.0    A+     1
 
-print('Class Avarage :',class_avarage)
-print('Topper of the class :', topper)
+# print('Class Avarage :',class_avarage)
+# print('Topper of the class :', topper)
 
+
+
+# Failure rate
+
+failure_rate = (
+    len(df[df['Grade'] == 'f'])/len(df)
+)*100
+
+# print(failure_rate)      #0.0
+
+# The failure rate is 0.0% because no students met the failure criteria in the dataset.
+
+City_summery = (
+    df.groupby('City')['Average'].mean().round(2)
+)
+
+# print(City_summery)
+
+
+
+
+print("===== SUMMARY =====")
+
+print(f"Class Average: {class_avarage :.2f}")
+
+print(
+    f"Topper: {topper['Name']} "
+    f"({topper['Total']} marks)"
+)
+
+print(
+    f"Failure Rate: "
+    f"{failure_rate:.2f}%"
+)
+
+print("\nCity Wise Average")
+print(City_summery)
