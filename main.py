@@ -44,7 +44,7 @@ df = pd.read_csv('student.csv')
 
 # print(df.isnull().sum())
 
-# df['Name'] = df['Name'].str.strip()
+df['Name'] = df['Name'].str.strip()
 # print(df['Name'])
 
 #For Errors handling
@@ -61,6 +61,7 @@ df = pd.read_csv('student.csv')
 #  Calculate: total, average, grade (A+/A/B/C/F), rank for each student.
 
 # Calculate Total & Average
+
 # print(df.head())
 # print(df.columns)
 
@@ -69,6 +70,40 @@ subjects = ['Maths', 'Science', 'English', 'Computer','History']
 df['Total'] = df[subjects].sum(axis=1)
 df['Average'] = df[subjects].mean(axis=1)
 
-print(df['Total'])
-print(df['Average'])
+# print(df['Total'])
+# print(df['Average'])
     
+# Now we calculate grade of eaach students. 
+
+def calculate_grade(avg):
+    if avg >= 90:
+        return "A+"
+    elif avg >= 80:
+        return "A"
+    elif avg >= 70:
+        return "B"
+    elif avg >= 60:
+        return "C"
+    else:
+        return "F"
+    
+    
+df['Grade'] = df['Average'].apply(calculate_grade)
+
+# print(df['Grade'])
+# print(df)
+
+#Rank Calculation
+
+df['Rank'] = df['Total'].rank(
+    ascending=False,
+    method='min'
+).astype(int)
+
+
+# print(df['Rank'])
+
+print(df)
+
+# The 3rd and 18th ranks were secured by two students each. Therefore, ranks 4 and 19 are not assigned and do not appear in the table.
+
