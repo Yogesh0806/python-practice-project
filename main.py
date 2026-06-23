@@ -10,7 +10,7 @@ records = [
 ['Priya',20,'Bhopal',85,88,92,85,87,5],
 ['Rahul',22,'Indore',55,60,58,62,59,2],
 ['Sneha   ',20,'Jabalpur',92,95,94,97,96,7],
-['Karan',21,'Gwalior',70,72,68,94,75,71,],
+['Karan',21,'Gwalior',70,72,68,94,75,7],
 ['Neha',19,'Indore',88,90,86,91,89,6],
 ['Vikas',22,'Bhopal',45,50,48,52,49,1],
 ['Pooja',20,'Jabalpur',80,84,82,86,81,5],
@@ -40,23 +40,12 @@ records = [
 
 import pandas as pd 
 df = pd.read_csv('student.csv')
-# # print(df.head())    
+# print(df.head())    
 
 # print(df.isnull().sum())
 
 df['Name'] = df['Name'].str.strip()
-# print(df['Name'])
 
-#For Errors handling
-# try:
-#     df = pd.read_csv("students.csv")
-#     print("File loaded successfully")
-# except FileNotFoundError:
-#     print("Error: students.csv file not found")
-#     exit()
-# except pd.errors.EmptyDataError:
-#     print("Error: CSV file is empty")
-#     exit()
 
 '''Tasks:
     2. Calculate: total, average, grade (A+/A/B/C/F), rank for each student.'''
@@ -75,7 +64,18 @@ df['Average'] = df[subjects].mean(axis=1)
 # print(df['Average'])
     
 # Now we calculate grade of eaach students. 
+# print(df['Name'])
 
+# For Errors handling
+# try:
+#     df = pd.read_csv("students.csv")
+#     print("File loaded successfully")
+# except FileNotFoundError:
+#     print("Error: students.csv file not found")
+#     exit()
+# except pd.errors.EmptyDataError:
+#     print("Error: CSV file is empty")
+#     exit()
 def calculate_grade(avg):
     if avg >= 90:
         return "A+"
@@ -144,19 +144,58 @@ City_summery = (
 
 
 
-print("===== SUMMARY =====")
+# print("===== SUMMARY =====")
 
-print(f"Class Average: {class_avarage :.2f}")
+# print(f"Class Average: {class_avarage :.2f}")
 
-print(
-    f"Topper: {topper['Name']} "
-    f"({topper['Total']} marks)"
-)
+# print(
+#     f"Topper: {topper['Name']} "
+#     f"({topper['Total']} marks)"
+# )
 
-print(
-    f"Failure Rate: "
-    f"{failure_rate:.2f}%"
-)
+# print(
+#     f"Failure Rate: "
+#     f"{failure_rate:.2f}%"
+# )
 
-print("\nCity Wise Average")
-print(City_summery)
+# print("\nCity Wise Average")
+# print(City_summery)
+
+'''Task
+    4. Create 5 charts: bar (city avg), pie (grade distribution), scatter (study vs marks), line (rank vs score), heatmap (subject correlations).'''
+
+import matplotlib.pyplot as plt 
+import seaborn as sns
+
+
+#Chart 1: Bar chart
+
+City_summery.plot(kind='bar', color=['lightgreen', 'green', 'skyblue', 'orange'])
+
+plt.title("City Average Marks")
+plt.ylabel("Average Marks")
+plt.tight_layout()
+plt.show()
+
+
+# Chart 2: Pie Chart
+
+
+grade_counts = (df["Grade"].value_counts())
+
+plt.figure(figsize=(7,7))
+plt.pie(grade_counts,labels=grade_counts.index,autopct='%1.1f%%')
+plt.title("Grade Distribution")
+plt.show()
+
+
+
+# Chart 3: Scatter Plot
+
+
+plt.figure(figsize=(8,5))
+plt.scatter(df["Study_Hours"],df["Average"])
+plt.xlabel("Study Hours")
+plt.ylabel("Average Marks")
+plt.title("Study Hours vs Marks")
+plt.show()
