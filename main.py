@@ -199,3 +199,23 @@ plt.xlabel("Study Hours")
 plt.ylabel("Average Marks")
 plt.title("Study Hours vs Marks")
 plt.show()
+
+# Chart 4: Line Chart
+
+
+df_sorted = (df.sort_values("Rank"))
+plt.figure(figsize=(8,5))
+plt.plot(df_sorted["Rank"],df_sorted["Total"],marker='o')
+plt.xlabel("Rank")
+plt.ylabel("Total Marks")
+plt.title("Rank vs Score")
+plt.show()
+
+
+# Chart 5: Heatmap
+
+
+plt.figure(figsize=(8,6))
+sns.heatmap(df[subjects].corr(),annot=True,cmap="coolwarm")
+plt.title("Subject Correlation Heatmap")
+plt.show()
