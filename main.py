@@ -168,54 +168,80 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 
-#Chart 1: Bar chart
+# #Chart 1: Bar chart
 
-City_summery.plot(kind='bar', color=['lightgreen', 'green', 'skyblue', 'orange'])
+# City_summery.plot(kind='bar', color=['lightgreen', 'green', 'skyblue', 'orange'])
 
-plt.title("City Average Marks")
-plt.ylabel("Average Marks")
-plt.tight_layout()
-plt.show()
-
-
-# Chart 2: Pie Chart
+# plt.title("City Average Marks")
+# plt.ylabel("Average Marks")
+# plt.tight_layout()
+# plt.show()
 
 
-grade_counts = (df["Grade"].value_counts())
-
-plt.figure(figsize=(7,7))
-plt.pie(grade_counts,labels=grade_counts.index,autopct='%1.1f%%')
-plt.title("Grade Distribution")
-plt.show()
+# # Chart 2: Pie Chart
 
 
+# grade_counts = (df["Grade"].value_counts())
 
-# Chart 3: Scatter Plot
-
-
-plt.figure(figsize=(8,5))
-plt.scatter(df["Study_Hours"],df["Average"])
-plt.xlabel("Study Hours")
-plt.ylabel("Average Marks")
-plt.title("Study Hours vs Marks")
-plt.show()
-
-# Chart 4: Line Chart
+# plt.figure(figsize=(7,7))
+# plt.pie(grade_counts,labels=grade_counts.index,autopct='%1.1f%%')
+# plt.title("Grade Distribution")
+# plt.show()
 
 
-df_sorted = (df.sort_values("Rank"))
-plt.figure(figsize=(8,5))
-plt.plot(df_sorted["Rank"],df_sorted["Total"],marker='o')
-plt.xlabel("Rank")
-plt.ylabel("Total Marks")
-plt.title("Rank vs Score")
-plt.show()
+
+# # Chart 3: Scatter Plot
 
 
-# Chart 5: Heatmap
+# plt.figure(figsize=(8,5))
+# plt.scatter(df["Study_Hours"],df["Average"])
+# plt.xlabel("Study Hours")
+# plt.ylabel("Average Marks")
+# plt.title("Study Hours vs Marks")
+# plt.show()
+
+# # Chart 4: Line Chart
 
 
-plt.figure(figsize=(8,6))
-sns.heatmap(df[subjects].corr(),annot=True,cmap="coolwarm")
-plt.title("Subject Correlation Heatmap")
-plt.show()
+# df_sorted = (df.sort_values("Rank"))
+# plt.figure(figsize=(8,5))
+# plt.plot(df_sorted["Rank"],df_sorted["Total"],marker='o')
+# plt.xlabel("Rank")
+# plt.ylabel("Total Marks")
+# plt.title("Rank vs Score")
+# plt.show()
+
+
+# # Chart 5: Heatmap
+
+
+# plt.figure(figsize=(8,6))
+# sns.heatmap(df[subjects].corr(),annot=True,cmap="coolwarm")
+# plt.title("Subject Correlation Heatmap")
+# plt.close()
+
+
+'''Task:
+  5. Save cleaned data and report to CSV files.
+'''
+
+df.to_csv("cleaned_students.csv",index=False)
+
+report = pd.DataFrame({
+    "Metric": [
+        "Class Average",
+        "Failure Rate (%)",
+        "Topper"
+    ],
+    "Value": [
+        round(class_avarage,2),
+        round(failure_rate,2),
+        topper["Name"]
+    ]
+})
+
+
+report.to_csv(
+    "student_report.csv",
+    index=False
+)
